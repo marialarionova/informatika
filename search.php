@@ -29,7 +29,7 @@ $query .= " WHERE (fio_student IN
 (SELECT fio_student FROM student WHERE (fio_student LIKE '%$name%')))"; 
 }
 
-elseif (!empty($lesson)) { 
+if (!empty($lesson)) { 
 $query .= " AND (timetable.lesson LIKE '%$lesson%')"; 
 } 
 
