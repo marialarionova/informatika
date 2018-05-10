@@ -22,11 +22,14 @@ $name = strtr(trim($_GET['name']), '*', '%');
 $lesson = strtr(trim($_GET['lesson']), '*', '%'); 
 
 $query = "SELECT * FROM student 
-JOIN timetable ON timetable.id_gruppa=student.id_gruppa 
-WHERE (fio_student IN 
+JOIN timetable ON timetable.id_gruppa=student.id_gruppa";
+  
+if (!empty($name)) { 
+$query .= " WHERE (fio_student IN 
 (SELECT fio_student FROM student WHERE (fio_student LIKE '%$name%')))"; 
+}
 
-if (!empty($lesson)) { 
+elseif (!empty($lesson)) { 
 $query .= " AND (timetable.lesson LIKE '%$lesson%')"; 
 } 
 
