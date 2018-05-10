@@ -33,7 +33,12 @@ if (!empty($lesson)) {
 $query .= " AND (timetable.lesson LIKE '%$lesson%')"; 
 } 
 
-$result = mysqli_query($link, $query); 
+$result = mysqli_query($link, $query);
+  
+if(mysqli_num_rows($result) == 0)
+{
+echo 'пустой';
+} else {
 
 echo "<table border = 1 align=center><tr><td>Имя</td><td>Урок</td></tr>"; 
 
@@ -41,7 +46,7 @@ while($row = mysqli_fetch_array($result)) {
 echo "<tr><td>" . $row['fio_student'] . "</td><td>" . $row['lesson'] . "</td></tr>"; 
 } 
 
-echo "</table>"; 
+echo "</table>"; }
 
 mysqli_close($link); 
 }
